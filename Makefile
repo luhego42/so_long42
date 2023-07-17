@@ -2,7 +2,8 @@ NAME		=	so_long
 
 SRC			=	main.c \
 				parsing.c \
-				mlx_fcnt.c
+				mlx_fcnt.c \
+				map.c
 
 OBJ			=	$(SRC:.c=.o)
 
