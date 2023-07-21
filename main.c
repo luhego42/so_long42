@@ -6,7 +6,7 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:45:49 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/20 16:59:39 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/21 19:09:40 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	main(int argc, char **argv)
 		env.mlx_win = mlx_new_window(env.mlx, 1920, 1080, "Slide_Pingu");
 		if (!env.mlx_win)
 			ft_exit("Error\nFail open window.\n", &env);
+		ft_init_xpm(&env);
 		ft_refresh_win(&env);
 		mlx_hook(env.mlx_win, 17, 1L << 3, ft_close_window, &env);
 		//mlx_key_hook (env.mlx_win, ft_keyboard, &env);

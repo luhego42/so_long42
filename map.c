@@ -6,11 +6,23 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:21:44 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/19 19:20:45 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/21 19:14:48 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	ft_init_xpm(t_env *env)
+{
+	int	img_width;
+	int	img_height;
+
+	env->mlx_xpm.open_exit = mlx_xpm_file_to_image(env->mlx, "./xpm/open_exit.xpm", &img_width, &img_height);
+	env->mlx_xpm.closed_exit = mlx_xpm_file_to_image(env->mlx, "./xpm/closed_exit.xpm", &img_width, &img_height);
+	env->mlx_xpm.player = mlx_xpm_file_to_image(env->mlx, "./xpm/player.xpm", &img_width, &img_height);
+	env->mlx_xpm.wall = mlx_xpm_file_to_image(env->mlx, "./xpm/wall.xpm", &img_width, &img_height);
+	env->mlx_xpm.floor = mlx_xpm_file_to_image(env->mlx, "./xpm/floor.xpm", &img_width, &img_height);
+}
 
 void	ft_fd_size(int fd, int *fd_size)
 {

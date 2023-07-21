@@ -3,6 +3,7 @@ NAME		=	so_long
 SRC			=	main.c \
 				parsing.c \
 				mlx_fcnt.c \
+				refresh_win.c \
 				map.c
 
 OBJ			=	$(SRC:.c=.o)
