@@ -6,24 +6,11 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:45:49 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/21 19:09:40 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/24 19:44:46 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static void	ft_print_map(char **map, int fd_size)
-{
-	int	column;
-
-	column = 0;
-	while (column != fd_size)
-	{
-		ft_putstr_fd(map[column], 1);
-		write(1, "\n", 1);
-		column++;
-	}
-}
 
 void	ft_exit(char *str_error, t_env *env)
 {
@@ -45,8 +32,15 @@ void	ft_exit(char *str_error, t_env *env)
 			}
 			free(tab);
 		}
-	//	if (env->img)
-	//		free(img);
+		if (env->mlx_xpm.opened_exit) // possible segfault on specific cases
+		{
+			mlx_destroy_image(env->mlx, env->mlx_xpm.opened_exit);
+			mlx_destroy_image(env->mlx, env->mlx_xpm.closed_exit);
+			mlx_destroy_image(env->mlx, env->mlx_xpm.player);
+			mlx_destroy_image(env->mlx, env->mlx_xpm.floor);
+			mlx_destroy_image(env->mlx, env->mlx_xpm.wall);
+			mlx_destroy_image(env->mlx, env->mlx_xpm.item);
+		}
 		if (env->mlx_win)
 			mlx_destroy_window(env->mlx, env->mlx_win);
 		if (env->mlx)
@@ -61,29 +55,30 @@ void	ft_exit(char *str_error, t_env *env)
 int	main(int argc, char **argv)
 {
 	t_env	env;
-	int		fd_size;
+	int		map_height;
+	int		map_width;
 
 	if (argc == 2)
 	{
-		if (!ft_valid_file(argv[1], &fd_size, &env.map))
+		if (!ft_valid_file(argv[1], &map_height, &env.map))
 			return (0);
-		if (!ft_fill_map(&fd_size, argv[1], env.map))
+		if (!ft_fill_map(&map_height, argv[1], env.map))
 			return (0);
 		env.mlx = 0;
 		env.mlx_win = 0;
-		ft_parsing(&env, fd_size);
+		ft_parsing(&env, map_height);
+		map_width = ft_strlen(env.map[0]);
 		env.mlx = mlx_init();
 		if (!env.mlx)
 			ft_exit("Error\nFail init map.\n", &env);
-		env.mlx_win = mlx_new_window(env.mlx, 1920, 1080, "Slide_Pingu");
+		env.mlx_win = mlx_new_window(env.mlx, map_width * 64, map_height * 64, "Slide_Pingu");
 		if (!env.mlx_win)
 			ft_exit("Error\nFail open window.\n", &env);
 		ft_init_xpm(&env);
 		ft_refresh_win(&env);
 		mlx_hook(env.mlx_win, 17, 1L << 3, ft_close_window, &env);
-		//mlx_key_hook (env.mlx_win, ft_keyboard, &env);
+		mlx_key_hook(env.mlx_win, ft_keyboard, &env);
 		mlx_loop(env.mlx);
-		ft_print_map(env.map, fd_size);
 		ft_exit(0, &env);
 	}
 	return (0);

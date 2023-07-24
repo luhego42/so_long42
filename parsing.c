@@ -6,7 +6,7 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:00:22 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/19 18:30:14 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/24 14:59:42 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static int	ft_map_limit(char **map, int column_max)
 
 /*static int	ft_flood_fill(t_env *env)
 {
+				mlx_put_image_to_window(env->mlx, env->mlx_win, env->mlx_xpm.item, x * 64, y * 64);
 	
 }
 */
