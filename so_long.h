@@ -6,18 +6,22 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:22:09 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/24 19:46:03 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/25 18:54:47 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <stdio.h>
 # include <fcntl.h>
-# include <errno.h>
+# include <sys/stat.h>
 # include "libft/libft.h"
 # include "mlx/mlx.h"
+
+# define UP 'w'
+# define DOWN 's'
+# define LEFT 'a'
+# define RIGHT 'd'
 
 typedef struct s_mlx_xpm
 {
@@ -35,7 +39,7 @@ typedef struct s_env
 	void		*mlx;
 	void		*mlx_win;
 	size_t		items;
-	size_t		nb_move;
+	int			nb_move;
 	t_mlx_xpm	mlx_xpm;
 }	t_env;
 

@@ -6,7 +6,7 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:00:22 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/24 14:59:42 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/25 19:00:55 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ static int	ft_map_limit(char **map, int column_max)
 
 /*static int	ft_flood_fill(t_env *env)
 {
-				mlx_put_image_to_window(env->mlx, env->mlx_win, env->mlx_xpm.item, x * 64, y * 64);
-	
 }
 */
 static int	ft_caractere_nb(t_env *env)
@@ -70,23 +68,20 @@ static int	ft_caractere_nb(t_env *env)
 	int	y;
 
 	e = 0;
-	env->items = 0;
 	p = 0;
-	y = 0;
-	while (env->map[y])
+	y = -1;
+	while (env->map[++y])
 	{
-		x = 0;
-		while (env->map[y][x])
+		x = -1;
+		while (env->map[y][++x])
 		{
 			if (env->map[y][x] == 'E')
 				e++;
-			if (env->map[y][x] == 'P')
+			else if (env->map[y][x] == 'P')
 				p++;
-			if (env->map[y][x] == 'C')
+			else if (env->map[y][x] == 'C')
 				env->items++;
-			x++;
 		}
-		y++;
 	}
 	if (e != 1 || p != 1 || env->items < 1)
 		return (0);
