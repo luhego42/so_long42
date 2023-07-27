@@ -6,30 +6,11 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:21:44 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/25 19:11:35 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/27 23:00:18 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_init_xpm(t_env *env)
-{
-	int	img_width;
-	int	img_height;
-
-		env->mlx_xpm.opened_exit = mlx_xpm_file_to_image(env->mlx, \
-		"./xpm/opened_exit.xpm", &img_width, &img_height);
-		env->mlx_xpm.closed_exit = mlx_xpm_file_to_image(env->mlx, \
-		"./xpm/closed_exit.xpm", &img_width, &img_height);
-		env->mlx_xpm.player = mlx_xpm_file_to_image(env->mlx, \
-		"./xpm/player.xpm", &img_width, &img_height);
-		env->mlx_xpm.wall = mlx_xpm_file_to_image(env->mlx, \
-		"./xpm/wall.xpm", &img_width, &img_height);
-		env->mlx_xpm.floor = mlx_xpm_file_to_image(env->mlx, \
-		"./xpm/floor.xpm", &img_width, &img_height);
-		env->mlx_xpm.item = mlx_xpm_file_to_image(env->mlx, \
-		"./xpm/item.xpm", &img_width, &img_height);
-}
 
 void	ft_fd_size(int fd, int *fd_size)
 {
@@ -73,7 +54,7 @@ int	ft_valid_file(char *file, int *fd_size, char ***map)
 	ft_fd_size(fd, fd_size);
 	*map = malloc(sizeof(char *) * (*fd_size + 1));
 	if (!*map)
-		ft_exit("Error\nMissing memory", 0);
+		ft_exit("Error\nMissing memory.\n", 0);
 	close (fd);
 	return (1);
 }
@@ -98,5 +79,36 @@ int	ft_fill_map(int *fd_size, char *file, char **map)
 	}
 	map[x] = 0;
 	close (fd);
+	return (1);
+}
+
+int	ft_xpm_exist(void)
+{
+	int	fd;
+
+	fd = open("xpm/closed_exit.xpm", O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	close(fd);
+	fd = open("xpm/opened_exit.xpm", O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	close(fd);
+	fd = open("xpm/floor.xpm", O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	close(fd);
+	fd = open("xpm/item.xpm", O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	close(fd);
+	fd = open("xpm/player.xpm", O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	close(fd);
+	fd = open("xpm/wall.xpm", O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	close(fd);
 	return (1);
 }

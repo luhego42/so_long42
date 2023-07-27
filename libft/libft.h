@@ -6,7 +6,7 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 17:28:16 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/25 17:43:08 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/27 14:36:12 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -76,5 +76,6 @@ void	ft_unsigned_putnbr(size_t nbr, char *base, int *count);
 void	ft_putnbr_base(long long nbr, char *base, int *count);
 void	ft_putstr_count(const char *str, int *count);
 void	ft_putchar_count(char c, int *count);
+void	ft_free_double_tab(char	**tab);
 
 #endif

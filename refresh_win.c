@@ -6,7 +6,7 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 15:49:40 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/24 14:46:08 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/27 23:03:50 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,19 @@ void	ft_refresh_win(t_env *env)
 		}
 		y++;
 	}
+}
+
+void	ft_swap_image(char *player, char *path)
+{
+	char	tmp;
+
+	tmp = *player;
+	*player = '0';
+	*path = tmp;
+}
+
+int	ft_close_window(t_env *env)
+{
+	ft_exit(0, env);
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: luhego <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 17:45:23 by luhego            #+#    #+#              #
-#    Updated: 2023/07/25 17:42:20 by luhego           ###   ########.fr        #
+#    Updated: 2023/07/27 14:36:29 by luhego           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,8 @@ SRC			=	ft_bzero.c \
 				ft_putchar_count.c \
 				ft_putnbr_base.c \
 				ft_unsigned_putnbr.c \
-				ft_printf.c
+				ft_printf.c \
+				ft_free_double_tab.c
 
 SRC_BONUS	= 	ft_lstnew_bonus.c \
 				ft_lstadd_front_bonus.c \

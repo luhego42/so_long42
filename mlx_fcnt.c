@@ -6,16 +6,32 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:22:20 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/25 17:03:32 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/27 20:12:44 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_close_window(t_env *env)
+void	ft_get_player_location(t_env *env, int *player_y, int *player_x)
 {
-	ft_exit(0, env);
-	return (0);
+	int	y;
+	int	x;
+
+	y = 0;
+	while (env->solving_map[y])
+	{
+		x = 0;
+		while (env->solving_map[y][x])
+		{
+			if (env->solving_map[y][x] == 'P')
+			{
+				*player_y = y;
+				*player_x = x;
+			}
+			x++;
+		}
+		y++;
+	}
 }
 
 static void	ft_get_player(t_env *env, char **player, char **path, char move)
@@ -47,13 +63,28 @@ static void	ft_get_player(t_env *env, char **player, char **path, char move)
 	}
 }
 
-static void	ft_swap_image(char *player, char *path)
+int	ft_map_is_solved(t_env *env)
 {
-	char	tmp;
+	int	y;
+	int	x;
 
-	tmp = *player;
-	*player = '0';
-	*path = tmp;
+	y = 0;
+	while (env->solving_map[y])
+	{
+		x = 0;
+		while (env->solving_map[y][x])
+		{
+			if (env->solving_map[y][x] == 'C')
+				return (0);
+			if (env->solving_map[y][x] == '0')
+				return (0);
+			if (env->solving_map[y][x] == 'E')
+				return (0);
+			x++;
+		}
+		y++;
+	}
+	return (1);
 }
 
 static void	ft_move_image(t_env *env, char move)

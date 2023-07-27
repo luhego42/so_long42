@@ -6,7 +6,7 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:00:22 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/25 19:00:55 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/27 23:02:16 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,18 @@ static int	ft_map_limit(char **map, int column_max)
 	return (1);
 }
 
-/*static int	ft_flood_fill(t_env *env)
+static void	ft_flood_fill(t_env *env, int y, int x)
 {
+	if (env->solving_map[y][x] != '1' && env->solving_map[y][x] != 'P')
+	{
+		env->solving_map[y][x] = 'P';
+		ft_flood_fill(env, y, x + 1);
+		ft_flood_fill(env, y, x - 1);
+		ft_flood_fill(env, y + 1, x);
+		ft_flood_fill(env, y - 1, x);
+	}
 }
-*/
+
 static int	ft_caractere_nb(t_env *env)
 {
 	int	e;
@@ -88,14 +96,24 @@ static int	ft_caractere_nb(t_env *env)
 	return (1);
 }
 
-void	ft_parsing(t_env *env, int fd_size)
+void	ft_parsing(t_env *env, int fd_size, char *str)
 {
+	int	y;
+	int	x;
+
 	if (!ft_valid_map(env->map))
 		ft_exit("Error\nMap letter incorrect.\n", env);
 	if (!ft_map_limit(env->map, fd_size - 1))
 		ft_exit("Error\nMap not surrounded by walls.\n", env);
 	if (!ft_caractere_nb(env))
 		ft_exit("Error\nMap need one entry, exit and min one item.\n", env);
-//	if (!ft_flood_fill(env))
-//		ft_exit("Error\nMap cannot be resolved", env);
+	env->solving_map = malloc(sizeof(char *) * (fd_size + 1));
+	if (!env->solving_map)
+		ft_exit("Error\nMissing memory.\n", env);
+	ft_fill_map(&fd_size, str, env->solving_map);
+	ft_get_player_location(env, &y, &x);
+	env->solving_map[y][x] = '0';
+	ft_flood_fill(env, y, x);
+	if (!ft_map_is_solved(env))
+		ft_exit("Error\nMap cannot be resolved\n", env);
 }
