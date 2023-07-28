@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:21:44 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/27 23:00:18 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:38:00 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,8 @@ int	ft_fill_map(int *fd_size, char *file, char **map)
 	return (1);
 }
 
-int	ft_xpm_exist(void)
+int	ft_xpm_exist(int fd)
 {
-	int	fd;
-
 	fd = open("xpm/closed_exit.xpm", O_RDONLY);
 	if (fd == -1)
 		return (-1);

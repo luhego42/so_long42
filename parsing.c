@@ -6,7 +6,7 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:00:22 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/27 23:02:16 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:38:23 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ static void	ft_flood_fill(t_env *env, int y, int x)
 	}
 }
 
-static int	ft_caractere_nb(t_env *env)
+static int	ft_char_nb(t_env *env)
 {
 	int	e;
 	int	p;
@@ -105,7 +105,7 @@ void	ft_parsing(t_env *env, int fd_size, char *str)
 		ft_exit("Error\nMap letter incorrect.\n", env);
 	if (!ft_map_limit(env->map, fd_size - 1))
 		ft_exit("Error\nMap not surrounded by walls.\n", env);
-	if (!ft_caractere_nb(env))
+	if (!ft_char_nb(env))
 		ft_exit("Error\nMap need one entry, exit and min one item.\n", env);
 	env->solving_map = malloc(sizeof(char *) * (fd_size + 1));
 	if (!env->solving_map)

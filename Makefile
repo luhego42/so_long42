@@ -4,7 +4,7 @@ SRC			=	main.c \
 				parsing.c \
 				mlx_fcnt.c \
 				refresh_win.c \
-				map.c
+				check_map.c
 
 OBJ			=	$(SRC:.c=.o)
 

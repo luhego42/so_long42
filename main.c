@@ -6,7 +6,7 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 17:45:49 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/27 22:58:17 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:38:06 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	ft_destroy_sprite(t_env *env)
 {
-	if (ft_xpm_exist() == 1)
+	if (ft_xpm_exist(0) == 1)
 	{
 		if (env->mlx_xpm.opened_exit != 0)
 			mlx_destroy_image(env->mlx, env->mlx_xpm.opened_exit);
@@ -97,6 +97,7 @@ static void	ft_init_env(t_env *env, char *str, int map_height, int map_width)
 	env->mlx_xpm.wall = 0;
 	env->mlx_xpm.floor = 0;
 	env->mlx_xpm.item = 0;
+	env->solving_map = 0;
 	ft_parsing(env, map_height, str);
 	map_width = ft_strlen(env->map[0]);
 	env->mlx = mlx_init();
@@ -117,7 +118,7 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		ft_init_env(&env, argv[1], 0, 0);
-		if (ft_xpm_exist() == -1)
+		if (ft_xpm_exist(0) == -1)
 			ft_exit("Error\nNo .xpm found.\n", &env);
 		ft_init_xpm(&env, &img_width, &img_height);
 		ft_refresh_win(&env);

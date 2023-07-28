@@ -6,7 +6,7 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:22:20 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/27 20:12:44 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:38:13 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ int	ft_map_is_solved(t_env *env)
 		while (env->solving_map[y][x])
 		{
 			if (env->solving_map[y][x] == 'C')
-				return (0);
-			if (env->solving_map[y][x] == '0')
 				return (0);
 			if (env->solving_map[y][x] == 'E')
 				return (0);

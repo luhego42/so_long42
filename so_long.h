@@ -6,7 +6,7 @@
 /*   By: luhego <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:22:09 by luhego            #+#    #+#             */
-/*   Updated: 2023/07/27 22:59:23 by luhego           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:27:14 by luhego           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int		ft_close_window(t_env *env);
 int		ft_keyboard(int keycode, t_env *env);
 int		ft_valid_file(char *file, int *fd_size, char ***map);
 int		ft_fill_map(int *fd_size, char *file, char **map);
-int		ft_xpm_exist(void);
+int		ft_xpm_exist(int fd);
 int		ft_map_is_solved(t_env *env);
 
 #endif
